@@ -1,0 +1,36 @@
+[33mcommit ceedcc90481c3c8d0c4cab2d7b3e3f0d03729224[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 30e2634 cdb7e4f
+Author: Echezarreta <echezarretairvin@gmail.com>
+Date:   Mon Sep 9 22:39:42 2019 -0500
+
+    Merge branch 'master' of https://github.com/IrvinEchezarreta/Interfaz
+
+[33mcommit 30e2634164d882b0cfd5ba44508d0e22c8f484bd[m
+Author: Echezarreta <echezarretairvin@gmail.com>
+Date:   Mon Sep 9 22:30:31 2019 -0500
+
+    mejoras de la interfaz
+
+[33mcommit cdb7e4f929cab5f4d8e56627a1a22f4b2ce07434[m
+Author: Fernando Sanchez <molefasc2410@gmail.com>
+Date:   Tue Sep 3 15:53:33 2019 -0500
+
+    agregue rafa
+
+[33mcommit f83ff63ff63ca05ed5ab6ec52195335ba167a59a[m
+Author: Echezarreta <echezarretairvin@gmail.com>
+Date:   Tue Sep 3 15:37:03 2019 -0500
+
+    segunda interfaz con ionos
+
+[33mcommit c75648dc191140ad1b42be38e0b74051ddde78a9[m
+Author: Echezarreta <echezarretairvin@gmail.com>
+Date:   Tue Sep 3 14:40:59 2019 -0500
+
+    Cambios en el menu
+
+[33mcommit 4def1b51786f17acf39cdd744b3503278f8ad778[m
+Author: Echezarreta <echezarretairvin@gmail.com>
+Date:   Tue Sep 3 14:24:47 2019 -0500
+
+    comienzo de la interfaz
