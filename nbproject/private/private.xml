@@ -2,9 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/HP/Desktop/Interfaz/src/interfaz/PanelPrincipal.java</file>
             <file>file:/C:/Users/HP/Desktop/Interfaz/src/interfaz/PanelEstudiante.java</file>
             <file>file:/C:/Users/HP/Desktop/Interfaz/src/interfaz/PanelAdmin.java</file>
+=======
+            <file>file:/C:/Users/molef/Desktop/Interfaz/src/RafaPruebas/ModuloExcel.java</file>
+>>>>>>> b8e070e771a11ee81e9cba7b4f226e412f845a8d
         </group>
     </open-files>
 </project-private>
