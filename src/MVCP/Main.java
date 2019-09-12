@@ -20,6 +20,7 @@ public class Main
         UsuariosFunciones mod2=new UsuariosFunciones();
         PanelAdmin FrameAdmi=new PanelAdmin();
         
+        System.out.println("MVCP.Main.main()");
         controlador ctrl=new controlador(mod, mod2, FrameAdmi);
         FrameAdmi.setVisible(true);
         

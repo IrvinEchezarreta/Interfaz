@@ -21,6 +21,7 @@ public class controlador implements ActionListener
     
     public controlador(Usuarios mod, UsuariosFunciones mod2, PanelAdmin FrameAdmi)
     {
+        System.out.println("entro al contructor");
         this.mod=mod;
         this.mod2=mod2;
         this.FrameAdmi=FrameAdmi;
@@ -40,11 +41,14 @@ public class controlador implements ActionListener
     {
         if(e.getSource()== FrameAdmi.btnRegistrar)
         {
+            System.out.println("entro a la accion");
             mod.setNombreUsuario(FrameAdmi.txtNombresU.getText());
             mod.setApellidoPaternoU(FrameAdmi.txtApellidoPaternoU.getText());
             mod.setApellidoMaternoU(FrameAdmi.txtApellidoMaternoU.getText());
             mod.setUsuarioU(FrameAdmi.txtUsuarioU.getText());
             mod.setContraseña(FrameAdmi.txtUsuarioU.getText());
+            mod2.registrar(mod);
+            
         }
         
         

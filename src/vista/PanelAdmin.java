@@ -203,6 +203,7 @@ public class PanelAdmin extends javax.swing.JFrame {
 
     private void txtApellidoMaternoUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMaternoUActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtApellidoMaternoUActionPerformed
 
     private void txtContraseñaUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaUActionPerformed
