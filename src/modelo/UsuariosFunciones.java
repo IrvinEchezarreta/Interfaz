@@ -4,15 +4,60 @@
  * and open the template in the editor.
  */
 package modelo;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author HP
  */
 public class UsuariosFunciones extends conexion
 {
+    //esta clase herada la clase conexion para poder hacer las consultas sql
+    //aqui va en su mayoria consultas mas sin embargo se puede poner otras cosas dependiendo de la situacion
+    public DefaultTableModel TablaUsuarios() throws SQLException
+    {
+        System.out.println("modelo.UsuariosFunciones.TablaUsuarios()");
+        DefaultTableModel modelo = new DefaultTableModel();
+        //pa.tablaUsuarios.setModel(modelo);
+        String []datos=new String[5];
+       
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        
+        String sql = "SELECT * FROM usuarios";
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+        
+        ResultSetMetaData rsMD = rs.getMetaData();
+        int columnas = rsMD.getColumnCount();
+        
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido Paterno");
+        modelo.addColumn("Apellido Materno");
+        modelo.addColumn("Usuario");
+        modelo.addColumn("Contraseña");
+       
+        while(rs.next())
+        {
+            Object[]  filas = new Object[columnas];
+            
+            for(int i= 0; i < columnas; i++)
+            {
+                filas[i]= rs.getObject(i+1);
+                System.out.println(filas[i]);
+            }
+            modelo.addRow(filas);
+        }
+        //System.out.println(modelo);
+        return modelo;
+        
+    }
+    
     public void registrar(Usuarios use)
     {
         System.out.println("entro al metodo registrar");
@@ -20,7 +65,10 @@ public class UsuariosFunciones extends conexion
         Connection con = getConexion();
         String sql= "INSERT INTO usuarios(nombre, apellidoPaterno, apellidoMaterno, usuario, contraseña) VALUES(?,?,?,?,?)";
         
-        try {
+        try 
+        {
+            //use es un objeto creado para llamar metodos de la clase Usuarios
+            //en este caso para obtner lo guardado en los setters y hacer la insercion
             ps = con.prepareStatement(sql);
             ps.setString(1, use.getNombreUsuario());
             ps.setString(2, use.getApellidoPaternoU());
@@ -36,4 +84,41 @@ public class UsuariosFunciones extends conexion
         }
     }
     
+    public void modificar(Usuarios use)
+    {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        String sql= "UPDATE usuarios SET nombre='";
+        try 
+        {
+            ps = con.prepareStatement(sql+use.getNombreUsuario()+"',apellidoPaterno='"+use.getApellidoPaternoU()+"',apellidoMaterno='"+use.getApellidoMaternoU()+"',contraseña='"+use.getContraseña()+"' WHERE usuario = '"+use.getUsuarioU()+"'");
+            ps.execute();
+        } 
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    public void buscar(Usuarios use)
+    {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        
+    }
+    
+    public void eliminar(Usuarios use)
+    {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        String sql= "DELETE FROM usuarios WHERE usuario='";
+        try 
+        {  
+            ps = con.prepareStatement(sql+use.getUsuarioU()+"'");
+            ps.execute();
+        } 
+        catch (Exception e) 
+        {
+        }
+    }
 }

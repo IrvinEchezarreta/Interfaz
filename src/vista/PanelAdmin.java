@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package vista;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.table.DefaultTableModel;
+import modelo.UsuariosFunciones;
+
 /**
  *
  * @author JK
@@ -13,10 +19,32 @@ public class PanelAdmin extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame1
      */
-    public PanelAdmin() {
+    public JPopupMenu popMU = new JPopupMenu();
+    public JMenuItem item1 = new JMenuItem("Eliminar Datos");
+    public JMenuItem item2 = new JMenuItem("Modificar Datos");
+    
+    public PanelAdmin() 
+    {
         initComponents();
+        cargarUsuarios();
+        popMU.add(item1);
+        popMU.add(item2);
+        tablaUsuarios.setComponentPopupMenu(popMU);
+        
     }
 
+    public void cargarUsuarios()
+    {
+        UsuariosFunciones tb = new UsuariosFunciones();
+        try {            
+            tablaUsuarios.setModel(tb.TablaUsuarios());
+        } 
+        catch (Exception e) 
+        {
+            JOptionPane.showMessageDialog(null, e,"Error al cargar las notas",JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +67,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         txtUsuarioU = new javax.swing.JTextField();
         txtContraseñaU = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaUsuarios = new javax.swing.JTable();
         btnRegistrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -71,18 +99,33 @@ public class PanelAdmin extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Apellido Paterno", "Apellido Materno", "Usuario", "Contraseña"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaUsuarios);
 
         btnRegistrar.setText("Registrar");
 
@@ -107,11 +150,11 @@ public class PanelAdmin extends javax.swing.JFrame {
                             .addComponent(txtApellidoMaternoU)
                             .addComponent(txtApellidoPaternoU)
                             .addComponent(txtNombresU))
-                        .addGap(36, 36, 36))
+                        .addGap(19, 19, 19))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -259,7 +302,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable tablaUsuarios;
     public javax.swing.JTextField txtApellidoMaternoU;
     public javax.swing.JTextField txtApellidoPaternoU;
     public javax.swing.JTextField txtContraseñaU;

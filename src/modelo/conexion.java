@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
+ *ESTA CLASE SIRVE LA ESTABLECER UNA LINEA DE COMUNICACION CON LAS CONSULTAS
  * @author HP
  */
 public class conexion 

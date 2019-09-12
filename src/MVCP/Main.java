@@ -5,6 +5,7 @@
  */
 package MVCP;
 import controlador.controlador;
+import java.sql.SQLException;
 import modelo.Usuarios;
 /**
  *
@@ -14,12 +15,12 @@ import modelo.UsuariosFunciones;
 import vista.PanelAdmin;
 public class Main 
 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         
         Usuarios mod=new Usuarios();
         UsuariosFunciones mod2=new UsuariosFunciones();
         PanelAdmin FrameAdmi=new PanelAdmin();
-        
+                
         System.out.println("MVCP.Main.main()");
         controlador ctrl=new controlador(mod, mod2, FrameAdmi);
         FrameAdmi.setVisible(true);

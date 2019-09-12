@@ -16,6 +16,7 @@ public class Usuarios
     private String apellidoMaternoU;
     private String usuarioU;
     private String contraseña;
+    private String opcionMenu;
 
     public String getNombreUsuario() {
         return nombreUsuario;
