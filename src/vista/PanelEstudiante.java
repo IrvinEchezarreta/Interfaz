@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfaz;
+package vista;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -61,9 +61,9 @@ public class PanelEstudiante extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Matricula:");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/folder/Ok_48px.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/folder/Ok_48px.png"))); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/folder/Cancel_48px.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/folder/Cancel_48px.png"))); // NOI18N
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informacion del alumno", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
@@ -80,7 +80,7 @@ public class PanelEstudiante extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/folder/Quest_50px.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/folder/Quest_50px.png"))); // NOI18N
         jLabel5.setText("¿Que lugar visitaras?");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -96,7 +96,7 @@ public class PanelEstudiante extends javax.swing.JFrame {
         jRadioButton1.setText("Otros(Especifique)");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/folder/Save as_48px.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/folder/Save as_48px.png"))); // NOI18N
         jLabel6.setText("Guardar Visita");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
