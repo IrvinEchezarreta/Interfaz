@@ -85,7 +85,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaVisitantes = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -219,7 +219,7 @@ public class PanelAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Usuarios", new javax.swing.ImageIcon(getClass().getResource("/interfaz/folder/User Menu Male_20px.png")), jPanel1); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaVisitantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -230,7 +230,7 @@ public class PanelAdmin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tablaVisitantes);
 
         jTextField1.setText("jTextField1");
 
@@ -451,12 +451,12 @@ public class PanelAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     public javax.swing.JTable tablaAreas;
     public javax.swing.JTable tablaUsuarios;
+    private javax.swing.JTable tablaVisitantes;
     public javax.swing.JTextField txtApellidoMaternoU;
     public javax.swing.JTextField txtApellidoPaternoU;
     public javax.swing.JTextField txtArea;
