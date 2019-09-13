@@ -16,7 +16,15 @@ public class Usuarios
     private String apellidoMaternoU;
     private String usuarioU;
     private String contraseña;
-    private String opcionMenu;
+    private String nombreArea;
+
+    public String getNombreArea() {
+        return nombreArea;
+    }
+
+    public void setNombreArea(String nombreArea) {
+        this.nombreArea = nombreArea;
+    }
 
     public String getNombreUsuario() {
         return nombreUsuario;

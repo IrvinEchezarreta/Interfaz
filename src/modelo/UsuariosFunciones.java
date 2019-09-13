@@ -23,7 +23,6 @@ public class UsuariosFunciones extends conexion
         System.out.println("modelo.UsuariosFunciones.TablaUsuarios()");
         DefaultTableModel modelo = new DefaultTableModel();
         //pa.tablaUsuarios.setModel(modelo);
-        String []datos=new String[5];
        
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -49,34 +48,79 @@ public class UsuariosFunciones extends conexion
             for(int i= 0; i < columnas; i++)
             {
                 filas[i]= rs.getObject(i+1);
-                System.out.println(filas[i]);
+                //System.out.println(filas[i]);
             }
             modelo.addRow(filas);
         }
         //System.out.println(modelo);
         return modelo;
+    }
+    
+    public DefaultTableModel TablaAreas() throws SQLException
+    {
+        System.out.println("modelo.UsuariosFunciones.TablaAreas()");
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        //pa.tablaUsuarios.setModel(modelo);
+       
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        
+        String sql = "SELECT * FROM areas";
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+        
+        ResultSetMetaData rsMD = rs.getMetaData();
+        int columnas = rsMD.getColumnCount();
+        
+        modelo2.addColumn("Nombre del Area");
+       
+        while(rs.next())
+        {
+            Object[]  filas = new Object[columnas];
+            
+            for(int i= 0; i < columnas; i++)
+            {
+                filas[i]= rs.getObject(i+1);
+                System.out.println(filas[i]);
+            }
+            modelo2.addRow(filas);
+        }
+        //System.out.println(modelo);
+        return modelo2;
         
     }
     
-    public void registrar(Usuarios use)
+    public void registrar(Usuarios use, int num)
     {
         System.out.println("entro al metodo registrar");
         PreparedStatement ps = null;
         Connection con = getConexion();
-        String sql= "INSERT INTO usuarios(nombre, apellidoPaterno, apellidoMaterno, usuario, contraseña) VALUES(?,?,?,?,?)";
+        String usuarios= "INSERT INTO usuarios(nombre, apellidoPaterno, apellidoMaterno, usuario, contraseña) VALUES(?,?,?,?,?)";
+        String areas= "INSERT INTO areas(Area) VALUES(?)";
         
         try 
         {
             //use es un objeto creado para llamar metodos de la clase Usuarios
             //en este caso para obtner lo guardado en los setters y hacer la insercion
-            ps = con.prepareStatement(sql);
-            ps.setString(1, use.getNombreUsuario());
-            ps.setString(2, use.getApellidoPaternoU());
-            ps.setString(3, use.getApellidoMaternoU());
-            ps.setString(4, use.getUsuarioU());
-            ps.setString(5, use.getContraseña());
-            System.out.println("entro a la clasula sql");
-            ps.execute();
+            if(num == 1)
+            {
+                ps = con.prepareStatement(usuarios);
+                ps.setString(1, use.getNombreUsuario());
+                ps.setString(2, use.getApellidoPaternoU());
+                ps.setString(3, use.getApellidoMaternoU());
+                ps.setString(4, use.getUsuarioU());
+                ps.setString(5, use.getContraseña());
+                System.out.println("entro a la clasula sql");
+                ps.execute();
+            }
+            else if (num == 2) 
+            {
+                ps = con.prepareStatement(areas);
+                ps.setString(1, use.getNombreArea());
+                System.out.println("entro a la clasula sql");
+                ps.execute();
+            }
             
         } catch (Exception e) 
         {

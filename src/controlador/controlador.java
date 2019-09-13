@@ -29,6 +29,7 @@ public class controlador implements ActionListener
         this.mod2=mod2;//sirve para hacer llamadas a los metodos contenidos
         this.FrameAdmi=FrameAdmi;//sirve para hacer llamadas a los metodos contenidos
         this.FrameAdmi.btnRegistrar.addActionListener(this);//opcion para registrar
+        this.FrameAdmi.btnRegistrarArea.addActionListener(this);
         this.FrameAdmi.item1.addActionListener(this);//opcion elminar datos de popMenu
         this.FrameAdmi.item2.addActionListener(this);//opcion modificar datos de popMenu 
     }
@@ -54,9 +55,15 @@ public class controlador implements ActionListener
             mod.setApellidoMaternoU(FrameAdmi.txtApellidoMaternoU.getText());
             mod.setUsuarioU(FrameAdmi.txtUsuarioU.getText());
             mod.setContraseña(FrameAdmi.txtContraseñaU.getText());
-            mod2.registrar(mod);//se llama al metodo registrar de la clase UsuarioFunciones con el contenido en mod
+            mod2.registrar(mod, 1);//se llama al metodo registrar de la clase UsuarioFunciones con el contenido en mod
             FrameAdmi.cargarUsuarios();//se actualiza la tabla
             
+        }
+        else if(e.getSource()== FrameAdmi.btnRegistrarArea)
+        {
+            mod.setNombreArea(FrameAdmi.txtArea.getText());
+            mod2.registrar(mod, 2);
+            FrameAdmi.cargarAreas();
         }
         else if(e.getSource()==FrameAdmi.item1)//opcion para eliminar
         {
