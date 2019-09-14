@@ -4,27 +4,35 @@
  * and open the template in the editor.
  */
 package MVCP;
-import controlador.controlador;
 import java.sql.SQLException;
-import modelo.Usuarios;
 /**
  *
  * @author HP
  */
+import controlador.controlador;
+
+import modelo.Usuarios;
 import modelo.UsuariosFunciones;
 import vista.PanelAdmin;
+import  vista.PanelPrincipal;
 public class Main 
 {
-    public static void main(String[] args) throws SQLException {
+    public Main()
+    {
         
+    }
+    public static void main(String[] args) throws SQLException {
+                 
+        System.out.println("MVCP.Main.main()");
+        
+        PanelPrincipal FramePrincipal = new PanelPrincipal();
+        PanelAdmin FrameAdmi=new PanelAdmin();
         Usuarios mod=new Usuarios();
         UsuariosFunciones mod2=new UsuariosFunciones();
-        PanelAdmin FrameAdmi=new PanelAdmin();
-                
-        System.out.println("MVCP.Main.main()");
-        controlador ctrl=new controlador(mod, mod2, FrameAdmi);
-        FrameAdmi.setVisible(true);
         
+        
+        controlador ctrl2=new controlador(mod, mod2, FrameAdmi,FramePrincipal);
+        ctrl2.iniciar();
     }
     
 }

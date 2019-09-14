@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package vista;
+import controlador.controlador;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
+import modelo.Usuarios;
 import modelo.UsuariosFunciones;
 
 /**
@@ -31,9 +33,10 @@ public class PanelAdmin extends javax.swing.JFrame {
         popMU.add(item2);
         tablaUsuarios.setComponentPopupMenu(popMU);
         cargarAreas();
+        //inicarInterfazAdministracion();
         
     }
-
+    
     public void cargarUsuarios()
     {
         UsuariosFunciones tb = new UsuariosFunciones();
@@ -567,7 +570,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import modelo.Usuarios;//se importa del paquete modelo la clase usuarios
 import modelo.UsuariosFunciones;//se importa del paquete modelo la clase usuariosFunciones
 import vista.PanelAdmin;//se importa del paquete vistas el Frame PanelAdmi
+import vista.PanelPrincipal;
 /**
  *
  * AQUI SE PONE LOS ACCION LISENER CORRECPONDIENTE A CADA COMPONENTE
@@ -20,14 +21,19 @@ public class controlador implements ActionListener
 {
     private Usuarios mod;//se le asigna un varible identificadora para el contructor 
     private UsuariosFunciones mod2;//se le asigna un varible identificadora para el contructor 
-    private PanelAdmin FrameAdmi;//se le asigna un varible identificadora para el contructor 
+    private PanelAdmin FrameAdmi;//se le asigna un varible identificadora para el contructor
+    private PanelPrincipal FramePrincipal;
     
-    public controlador(Usuarios mod, UsuariosFunciones mod2, PanelAdmin FrameAdmi)
+    public controlador(Usuarios mod, UsuariosFunciones mod2, PanelAdmin FrameAdmi, PanelPrincipal FramePrincipal)
     {
         System.out.println("entro al contructor");
         this.mod=mod;//sirve para hacer llamadas a los metodos contenidos
         this.mod2=mod2;//sirve para hacer llamadas a los metodos contenidos
         this.FrameAdmi=FrameAdmi;//sirve para hacer llamadas a los metodos contenidos
+        this.FramePrincipal=FramePrincipal;
+        
+        this.FramePrincipal.btnAdministradorOpcion.addActionListener(this);
+        
         this.FrameAdmi.btnRegistrar.addActionListener(this);//opcion para registrar
         this.FrameAdmi.btnRegistrarArea.addActionListener(this);
         this.FrameAdmi.item1.addActionListener(this);//opcion elminar datos de popMenu
@@ -36,16 +42,28 @@ public class controlador implements ActionListener
     
     public void iniciar()
     {
+        FramePrincipal.setTitle("Menu");
+        FramePrincipal.setLocationRelativeTo(null);
+        FramePrincipal.setVisible(true);
+    }
+    
+    public void iniciarAdmi()
+    {
         FrameAdmi.setTitle("Administrador");
         FrameAdmi.setLocationRelativeTo(null);
+        FrameAdmi.setVisible(true);
     }
     
     @Override
     public void actionPerformed(ActionEvent e)
     {
         //getSource obtiniene algunas de las acciones 
+        if (e.getSource()==FramePrincipal.btnAdministradorOpcion) 
+        {
+            iniciarAdmi();
+        }
         //se compara de donde vino la accion en este caso si vino del btnRegistar del FRAME DEL ADMINISTRADOR entra en la condicion
-        if(e.getSource()== FrameAdmi.btnRegistrar)
+        else if(e.getSource()== FrameAdmi.btnRegistrar)
         {
             System.out.println("entro a la accion");
             //se invoca al objeto mod que contiene los getters y setters
