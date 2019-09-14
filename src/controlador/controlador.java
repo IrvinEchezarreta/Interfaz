@@ -10,6 +10,7 @@ import modelo.Usuarios;//se importa del paquete modelo la clase usuarios
 import modelo.UsuariosFunciones;//se importa del paquete modelo la clase usuariosFunciones
 import vista.PanelAdmin;//se importa del paquete vistas el Frame PanelAdmi
 import vista.PanelPrincipal;
+import vista.Login;
 /**
  *
  * AQUI SE PONE LOS ACCION LISENER CORRECPONDIENTE A CADA COMPONENTE
@@ -23,16 +24,23 @@ public class controlador implements ActionListener
     private UsuariosFunciones mod2;//se le asigna un varible identificadora para el contructor 
     private PanelAdmin FrameAdmi;//se le asigna un varible identificadora para el contructor
     private PanelPrincipal FramePrincipal;
+    private Login lg;
     
-    public controlador(Usuarios mod, UsuariosFunciones mod2, PanelAdmin FrameAdmi, PanelPrincipal FramePrincipal)
+    public controlador(Usuarios mod, UsuariosFunciones mod2, PanelAdmin FrameAdmi, PanelPrincipal FramePrincipal, Login lg)
     {
         System.out.println("entro al contructor");
         this.mod=mod;//sirve para hacer llamadas a los metodos contenidos
         this.mod2=mod2;//sirve para hacer llamadas a los metodos contenidos
         this.FrameAdmi=FrameAdmi;//sirve para hacer llamadas a los metodos contenidos
         this.FramePrincipal=FramePrincipal;
+        this.lg=lg;
+        
+        this.lg.btnIniciarSecion.addActionListener(this);
+        this.lg.btnCerraVentanaLogin.addActionListener(this);
         
         this.FramePrincipal.btnAdministradorOpcion.addActionListener(this);
+        this.FramePrincipal.btnEstudianteOpcion.addActionListener(this);
+        this.FramePrincipal.btnVisitanteOpcion.addActionListener(this);
         
         this.FrameAdmi.btnRegistrar.addActionListener(this);//opcion para registrar
         this.FrameAdmi.btnRegistrarArea.addActionListener(this);
@@ -45,6 +53,13 @@ public class controlador implements ActionListener
         FramePrincipal.setTitle("Menu");
         FramePrincipal.setLocationRelativeTo(null);
         FramePrincipal.setVisible(true);
+    }
+    
+    public void iniciarLogin()
+    {
+        lg.setTitle("Login");
+        lg.setLocationRelativeTo(null);
+        lg.setVisible(true);
     }
     
     public void iniciarAdmi()
@@ -60,7 +75,19 @@ public class controlador implements ActionListener
         //getSource obtiniene algunas de las acciones 
         if (e.getSource()==FramePrincipal.btnAdministradorOpcion) 
         {
-            iniciarAdmi();
+            iniciarLogin();
+        }
+        else if(e.getSource()==lg.btnIniciarSecion)
+        {
+            boolean fv = false;
+            mod.setContraseña(lg.txtContraseñaAutentificacio.getText());
+            mod.setUsuarioU(lg.txtUsuarioAutentificaion.getText());
+            fv =mod2.consultar(mod, fv);
+            if(fv == true)
+            {
+                iniciarAdmi();
+                lg.dispose();
+            }
         }
         //se compara de donde vino la accion en este caso si vino del btnRegistar del FRAME DEL ADMINISTRADOR entra en la condicion
         else if(e.getSource()== FrameAdmi.btnRegistrar)

@@ -14,7 +14,8 @@ import controlador.controlador;
 import modelo.Usuarios;
 import modelo.UsuariosFunciones;
 import vista.PanelAdmin;
-import  vista.PanelPrincipal;
+import vista.PanelPrincipal;
+import vista.Login;
 public class Main 
 {
     public Main()
@@ -26,12 +27,13 @@ public class Main
         System.out.println("MVCP.Main.main()");
         
         PanelPrincipal FramePrincipal = new PanelPrincipal();
+        Login lg = new Login();
         PanelAdmin FrameAdmi=new PanelAdmin();
         Usuarios mod=new Usuarios();
         UsuariosFunciones mod2=new UsuariosFunciones();
         
         
-        controlador ctrl2=new controlador(mod, mod2, FrameAdmi,FramePrincipal);
+        controlador ctrl2=new controlador(mod, mod2, FrameAdmi,FramePrincipal, lg);
         ctrl2.iniciar();
     }
     

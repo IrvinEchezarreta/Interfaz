@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -89,6 +91,29 @@ public class UsuariosFunciones extends conexion
         //System.out.println(modelo);
         return modelo2;
         
+    }
+    
+    public boolean consultar(Usuarios use, boolean fv)
+    {
+        try {
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Connection con = getConexion();
+            
+            String sql = "SELECT * FROM usuarios WHERE usuario ='"+use.getUsuarioU()+"' AND contraseña= '"+use.getContraseña()+"'";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+        while(rs.next())
+        {
+            fv = true;
+            return fv;
+        }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosFunciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
     public void registrar(Usuarios use, int num)
