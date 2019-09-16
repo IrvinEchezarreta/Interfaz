@@ -6,8 +6,13 @@
 package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Usuarios;//se importa del paquete modelo la clase usuarios
 import modelo.UsuariosFunciones;//se importa del paquete modelo la clase usuariosFunciones
+import modelo.ExcelFunciones;
 import vista.PanelAdmin;//se importa del paquete vistas el Frame PanelAdmi
 import vista.PanelPrincipal;
 import vista.Login;
@@ -22,15 +27,22 @@ public class controlador implements ActionListener
 {
     private Usuarios mod;//se le asigna un varible identificadora para el contructor 
     private UsuariosFunciones mod2;//se le asigna un varible identificadora para el contructor 
+    private ExcelFunciones modExcel;
     private PanelAdmin FrameAdmi;//se le asigna un varible identificadora para el contructor
     private PanelPrincipal FramePrincipal;
     private Login lg;
+    ////////////////////////////objetos utilies para exportar e importar///////////////////////////////
+    JFileChooser SelectArchivo=new JFileChooser();
+    File archivo;
+    int contador=0;
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
     
-    public controlador(Usuarios mod, UsuariosFunciones mod2, PanelAdmin FrameAdmi, PanelPrincipal FramePrincipal, Login lg)
+    public controlador(Usuarios mod, UsuariosFunciones mod2,ExcelFunciones modExcel, PanelAdmin FrameAdmi, PanelPrincipal FramePrincipal, Login lg)
     {
         System.out.println("entro al contructor");
         this.mod=mod;//sirve para hacer llamadas a los metodos contenidos
         this.mod2=mod2;//sirve para hacer llamadas a los metodos contenidos
+        this.modExcel=modExcel;
         this.FrameAdmi=FrameAdmi;//sirve para hacer llamadas a los metodos contenidos
         this.FramePrincipal=FramePrincipal;
         this.lg=lg;
@@ -46,6 +58,8 @@ public class controlador implements ActionListener
         this.FrameAdmi.btnRegistrarArea.addActionListener(this);
         this.FrameAdmi.item1.addActionListener(this);//opcion elminar datos de popMenu
         this.FrameAdmi.item2.addActionListener(this);//opcion modificar datos de popMenu 
+        
+        this.FrameAdmi.btnExportarExcel.addActionListener(this);//ExportarExcel;
     }
     
     public void iniciar()
@@ -69,6 +83,11 @@ public class controlador implements ActionListener
         FrameAdmi.setVisible(true);
     }
     
+    public void AgregarFiltro(){
+        SelectArchivo.setFileFilter(new FileNameExtensionFilter("Excel (*.xls)","xls"));
+        SelectArchivo.setFileFilter(new FileNameExtensionFilter("Excel (*.xlsx)","xlsx"));
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e)
     {
@@ -88,6 +107,10 @@ public class controlador implements ActionListener
                 iniciarAdmi();
                 lg.dispose();
             }
+        }
+        else if (e.getSource()== lg.btnCerraVentanaLogin)
+        {
+            lg.dispose();
         }
         //se compara de donde vino la accion en este caso si vino del btnRegistar del FRAME DEL ADMINISTRADOR entra en la condicion
         else if(e.getSource()== FrameAdmi.btnRegistrar)
@@ -121,14 +144,29 @@ public class controlador implements ActionListener
         {
             //se la tabla usuarios se obtinene el contenido de la fila por cada columna y se manda
             //a los getter y setters para poder usar mas adelante en modificar
-            mod.setNombreUsuario(FrameAdmi.tablaUsuarios.getValueAt(0, 0).toString());
-            mod.setApellidoPaternoU(FrameAdmi.tablaUsuarios.getValueAt(0, 1).toString());
-            mod.setApellidoMaternoU(FrameAdmi.tablaUsuarios.getValueAt(0, 2).toString());
-            mod.setUsuarioU(FrameAdmi.tablaUsuarios.getValueAt(0, 3).toString());
-            mod.setContraseña(FrameAdmi.tablaUsuarios.getValueAt(0, 4).toString());
+            
+            mod.setNombreUsuario(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 0).toString());
+            mod.setApellidoPaternoU(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 1).toString());
+            mod.setApellidoMaternoU(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 2).toString());
+            mod.setUsuarioU(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 3).toString());
+            mod.setContraseña(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 4).toString());
             mod2.modificar(mod);
             FrameAdmi.cargarUsuarios();
             
+        }
+        else if (e.getSource()==FrameAdmi.btnExportarExcel)//RESPUESTA AL BOTON EXPORTAR
+        {
+            contador++;
+            if(contador==1)AgregarFiltro();
+            if(SelectArchivo.showDialog(null, "Seleccionar Archivo")==JFileChooser.APPROVE_OPTION){
+                archivo=SelectArchivo.getSelectedFile();
+                //ALT + 124 ||
+                if(archivo.getName().endsWith("xls")||archivo.getName().endsWith("xlsx")){
+                    JOptionPane.showMessageDialog(null, modExcel.Exportar(archivo,FrameAdmi.tablaRegistros));
+                }else{
+                    JOptionPane.showMessageDialog(null, "Seleccionar formato Valido");
+                }
+            }
         }
         
         

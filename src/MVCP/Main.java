@@ -10,9 +10,11 @@ import java.sql.SQLException;
  * @author HP
  */
 import controlador.controlador;
+import modelo.ExcelFunciones;
 
 import modelo.Usuarios;
 import modelo.UsuariosFunciones;
+import modelo.ExcelFunciones;
 import vista.PanelAdmin;
 import vista.PanelPrincipal;
 import vista.Login;
@@ -31,9 +33,10 @@ public class Main
         PanelAdmin FrameAdmi=new PanelAdmin();
         Usuarios mod=new Usuarios();
         UsuariosFunciones mod2=new UsuariosFunciones();
+        ExcelFunciones modExcel = new ExcelFunciones();
         
         
-        controlador ctrl2=new controlador(mod, mod2, FrameAdmi,FramePrincipal, lg);
+        controlador ctrl2=new controlador(mod, mod2, modExcel, FrameAdmi,FramePrincipal, lg);
         ctrl2.iniciar();
     }
     

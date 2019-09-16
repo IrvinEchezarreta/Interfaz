@@ -33,6 +33,7 @@ public class PanelAdmin extends javax.swing.JFrame {
         popMU.add(item2);
         tablaUsuarios.setComponentPopupMenu(popMU);
         cargarAreas();
+        cargarRegistros();
         //inicarInterfazAdministracion();
         
     }
@@ -55,6 +56,19 @@ public class PanelAdmin extends javax.swing.JFrame {
         UsuariosFunciones tb = new UsuariosFunciones();
         try {            
             tablaAreas.setModel(tb.TablaAreas());
+        } 
+        catch (Exception e) 
+        {
+            JOptionPane.showMessageDialog(null, e,"Error al cargar las notas",JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+    
+    public void cargarRegistros()
+    {
+        UsuariosFunciones tb = new UsuariosFunciones();
+        try {            
+            tablaRegistros.setModel(tb.TablaRegistros());
         } 
         catch (Exception e) 
         {

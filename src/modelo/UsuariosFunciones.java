@@ -84,12 +84,54 @@ public class UsuariosFunciones extends conexion
             for(int i= 0; i < columnas; i++)
             {
                 filas[i]= rs.getObject(i+1);
-                System.out.println(filas[i]);
+                //System.out.println(filas[i]);
             }
             modelo2.addRow(filas);
         }
         //System.out.println(modelo);
         return modelo2;
+        
+    }
+    
+    public DefaultTableModel TablaRegistros() throws SQLException
+    {
+        System.out.println("modelo.UsuariosFunciones.TablaRegistros()");
+        DefaultTableModel modelo3 = new DefaultTableModel();
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        
+        String sql = "SELECT * FROM registros";
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+        
+        ResultSetMetaData rsMD = rs.getMetaData();
+        int columnas = rsMD.getColumnCount();
+        
+        modelo3.addColumn("Matricula");
+        modelo3.addColumn("Nombre");
+        modelo3.addColumn("Segundo Nombre");
+        modelo3.addColumn("Apellido Paterno");
+        modelo3.addColumn("Apellido Materno");
+        modelo3.addColumn("Nombre de la carrera");
+        modelo3.addColumn("Semestre");
+        modelo3.addColumn("Fecha");
+        modelo3.addColumn("Hora");
+        
+        while(rs.next())
+        {
+            Object[]  filas = new Object[columnas];
+            
+            for(int i= 0; i < columnas; i++)
+            {
+                filas[i]= rs.getObject(i+1);
+                //System.out.println(filas[i]);
+            }
+            modelo3.addRow(filas);
+        }
+        
+        return modelo3;
         
     }
     
@@ -186,8 +228,9 @@ public class UsuariosFunciones extends conexion
             ps = con.prepareStatement(sql+use.getUsuarioU()+"'");
             ps.execute();
         } 
-        catch (Exception e) 
+        catch (SQLException e) 
         {
+            e.printStackTrace();
         }
     }
 }
