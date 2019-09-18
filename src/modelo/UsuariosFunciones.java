@@ -11,6 +11,10 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -133,6 +137,49 @@ public class UsuariosFunciones extends conexion
         
         return modelo3;
         
+    }
+    public DefaultComboBoxModel getModeloBoxArea() 
+    {
+        DefaultComboBoxModel listModelArea = new DefaultComboBoxModel();
+        try 
+        {
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Connection con = getConexion();
+            
+            String sql = "SELECT Area FROM areas ";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+		listModelArea.addElement(rs.getString(1));
+            }
+            
+        } catch (Exception e) {
+        }
+        return listModelArea;
+      
+    }
+    
+     public DefaultComboBoxModel getModeloBoxCarrera() 
+    {
+        DefaultComboBoxModel listModelCarrera = new DefaultComboBoxModel();
+	listModelCarrera.addElement("INGENIERÍA ELECTRÓNICA");
+        listModelCarrera.addElement("INGENIERÍA EN GESTIÓN EMPRESARIAL");
+        listModelCarrera.addElement("INGENIERÍA ELECTRICA");
+        listModelCarrera.addElement("LICENCIATURA EN ADMINISTRACIÓN");
+        listModelCarrera.addElement("INGENIERÍA AMBIENTAL");
+        listModelCarrera.addElement("INGENIERÍA BIOQUÍMICA");
+        listModelCarrera.addElement("INGENIERÍA MECÁNICA");
+        listModelCarrera.addElement("INGENIERÍA EN SISTEMAS COMPUTACIONALES");
+        listModelCarrera.addElement("INGENIERÍA CIVIL");
+        listModelCarrera.addElement("INGENIERIA BIOMÉDICA");
+        listModelCarrera.addElement("INGENIERÍA INDUSTRIAL");
+        listModelCarrera.addElement("INGENIERÍA QUÍMICA");
+           
+        return listModelCarrera;
+      
     }
     
     public boolean consultar(Usuarios use, boolean fv)

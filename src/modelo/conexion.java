@@ -29,7 +29,7 @@ public class conexion
         {
             Class.forName(controlador);//carga el driver nativo 
             con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/testbiblio", "root", "");
-            System.out.println("se establecio conexion");
+            //System.out.println("se establecio conexion");
         }
         catch(Exception e)
         {

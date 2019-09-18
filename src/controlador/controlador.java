@@ -46,7 +46,7 @@ public class controlador implements ActionListener
         this.FrameAdmi=FrameAdmi;//sirve para hacer llamadas a los metodos contenidos
         this.FramePrincipal=FramePrincipal;
         this.lg=lg;
-        
+       
         this.lg.btnIniciarSecion.addActionListener(this);
         this.lg.btnCerraVentanaLogin.addActionListener(this);
         
@@ -54,6 +54,7 @@ public class controlador implements ActionListener
         this.FramePrincipal.btnEstudianteOpcion.addActionListener(this);
         this.FramePrincipal.btnVisitanteOpcion.addActionListener(this);
         
+        this.FrameAdmi.btnSalirAdmi.addActionListener(this);
         this.FrameAdmi.btnRegistrar.addActionListener(this);//opcion para registrar
         this.FrameAdmi.btnRegistrarArea.addActionListener(this);
         this.FrameAdmi.item1.addActionListener(this);//opcion elminar datos de popMenu
@@ -111,6 +112,10 @@ public class controlador implements ActionListener
         else if (e.getSource()== lg.btnCerraVentanaLogin)
         {
             lg.dispose();
+        }
+        else if(e.getSource()==FrameAdmi.btnSalirAdmi)
+        {
+            FrameAdmi.dispose();
         }
         //se compara de donde vino la accion en este caso si vino del btnRegistar del FRAME DEL ADMINISTRADOR entra en la condicion
         else if(e.getSource()== FrameAdmi.btnRegistrar)

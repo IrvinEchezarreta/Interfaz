@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/Users/HP/Desktop/Interfaz/src/vista/PanelAdmin.java</file>
             <file>file:/C:/Users/HP/Desktop/Interfaz/src/controlador/controlador.java</file>
+            <file>file:/C:/Users/HP/Desktop/Interfaz/src/vista/PanelPrincipal.java</file>
             <file>file:/C:/Users/HP/Desktop/Interfaz/src/modelo/ExcelFunciones.java</file>
+            <file>file:/C:/Users/HP/Desktop/Interfaz/src/modelo/Usuarios.java</file>
             <file>file:/C:/Users/HP/Desktop/Interfaz/src/MVCP/Main.java</file>
             <file>file:/C:/Users/HP/Desktop/Interfaz/src/modelo/UsuariosFunciones.java</file>
         </group>
