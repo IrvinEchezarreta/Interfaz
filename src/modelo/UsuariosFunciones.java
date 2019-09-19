@@ -97,16 +97,32 @@ public class UsuariosFunciones extends conexion
         
     }
     
-    public DefaultTableModel TablaRegistros() throws SQLException
+    public DefaultTableModel TablaRegistros(Usuarios use) throws SQLException
     {
         System.out.println("modelo.UsuariosFunciones.TablaRegistros()");
         DefaultTableModel modelo3 = new DefaultTableModel();
+        //Usuarios use = new Usuarios();
         
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
         
-        String sql = "SELECT * FROM registros";
+        String sql;
+        System.out.println(use.getNombreTipo());
+        System.out.println(use.getSemestre());
+        System.out.println(use.getSemestre());
+        System.out.println(use.getNombreArea());
+        
+        if(use.getNombreTipo()!= "" && use.getNombreTipo()!=null)
+        {
+            sql = "SELECT * FROM registros WHERE Tipo LIKE '"+use.getNombreTipo()+"'";
+        }
+        else
+        {
+            sql = "SELECT * FROM registros";
+        }
+        
+        System.out.println(sql);
         ps = con.prepareStatement(sql);
         rs = ps.executeQuery();
         
@@ -132,7 +148,7 @@ public class UsuariosFunciones extends conexion
             for(int i= 0; i < columnas; i++)
             {
                 filas[i]= rs.getObject(i+1);
-                //System.out.println(filas[i]);
+                System.out.println(filas[i]);
             }
             modelo3.addRow(filas);
         }
@@ -143,6 +159,7 @@ public class UsuariosFunciones extends conexion
     public DefaultComboBoxModel getModeloBoxArea() 
     {
         DefaultComboBoxModel listModelArea = new DefaultComboBoxModel();
+        listModelArea.addElement("");
         try 
         {
             PreparedStatement ps = null;
@@ -167,6 +184,7 @@ public class UsuariosFunciones extends conexion
      public DefaultComboBoxModel getModeloBoxCarrera() 
     {
         DefaultComboBoxModel listModelCarrera = new DefaultComboBoxModel();
+        listModelCarrera.addElement("");
 	listModelCarrera.addElement("INGENIERÍA ELECTRÓNICA");
         listModelCarrera.addElement("INGENIERÍA EN GESTIÓN EMPRESARIAL");
         listModelCarrera.addElement("INGENIERÍA ELECTRICA");
@@ -180,10 +198,19 @@ public class UsuariosFunciones extends conexion
         listModelCarrera.addElement("INGENIERÍA INDUSTRIAL");
         listModelCarrera.addElement("INGENIERÍA QUÍMICA");
            
-        return listModelCarrera;
-      
+        return listModelCarrera; 
     }
-    
+    public DefaultComboBoxModel getModeloBoxTipos() 
+    {
+        DefaultComboBoxModel listModelTipo = new DefaultComboBoxModel();
+        listModelTipo.addElement("");
+	listModelTipo.addElement("Licenciatura");
+        listModelTipo.addElement("Posgrado");
+        listModelTipo.addElement("Docentes");
+        listModelTipo.addElement("Administrativos");
+           
+        return listModelTipo;  
+    }
     public boolean consultar(Usuarios use, boolean fv)
     {
         try {

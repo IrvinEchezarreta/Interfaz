@@ -16,7 +16,37 @@ public class Usuarios
     private String apellidoMaternoU;
     private String usuarioU;
     private String contraseña;
+    
     private String nombreArea;
+    private String nombreTipo;
+    private String Semestre;
+    private String Carrera;
+
+    public String getNombreTipo() {
+        return nombreTipo;
+    }
+
+    public void setNombreTipo(String nombreTipo) {
+        this.nombreTipo = nombreTipo;
+    }
+
+    public String getSemestre() {
+        return Semestre;
+    }
+
+    public void setSemestre(String Semestre) {
+        this.Semestre = Semestre;
+    }
+
+    public String getCarrera() {
+        return Carrera;
+    }
+
+    public void setCarrera(String Carrera) {
+        this.Carrera = Carrera;
+    }
+    
+           
 
     public String getNombreArea() {
         return nombreArea;

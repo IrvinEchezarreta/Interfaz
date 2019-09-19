@@ -22,6 +22,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame1
      */
+    Usuarios use=new Usuarios(); 
     public JPopupMenu popMU = new JPopupMenu();
     public JMenuItem item1 = new JMenuItem("Eliminar Datos");
     public JMenuItem item2 = new JMenuItem("Modificar Datos");
@@ -43,9 +44,10 @@ public class PanelAdmin extends javax.swing.JFrame {
         popMA.add(item2A);
         tablaAreas.setComponentPopupMenu(popMA);
         
-        cargarRegistros();
+        cargarRegistros(use);
         boxArea();
         boxCarrera();
+        boxTipo();
         
     }
     public void boxArea()
@@ -62,6 +64,14 @@ public class PanelAdmin extends javax.swing.JFrame {
         UsuariosFunciones tb = new UsuariosFunciones();
         try {
             comboBoxCarrera.setModel(tb.getModeloBoxCarrera());
+        } catch (Exception e) {
+        }
+    }
+    public void boxTipo()
+    {
+        UsuariosFunciones tb = new UsuariosFunciones();
+        try {
+            comboBoxTipo.setModel(tb.getModeloBoxTipos());
         } catch (Exception e) {
         }
     }
@@ -91,11 +101,11 @@ public class PanelAdmin extends javax.swing.JFrame {
         }
     }
     
-    public void cargarRegistros()
+    public void cargarRegistros(Usuarios use)
     {
         UsuariosFunciones tb = new UsuariosFunciones();
         try {            
-            tablaRegistros.setModel(tb.TablaRegistros());
+            tablaRegistros.setModel(tb.TablaRegistros(use));
         } 
         catch (Exception e) 
         {
@@ -433,8 +443,6 @@ public class PanelAdmin extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tablaRegistros);
 
         jLabel12.setText("Tipo");
-
-        comboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel13.setText("Carrera");
 

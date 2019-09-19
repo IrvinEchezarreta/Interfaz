@@ -7,6 +7,9 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -62,6 +65,8 @@ public class controlador implements ActionListener
         this.FrameAdmi.btnRegistrarArea.addActionListener(this);
         this.FrameAdmi.item1A.addActionListener(this);
         this.FrameAdmi.item2A.addActionListener(this);
+        
+        this.FrameAdmi.btnFiltrarRegistros.addActionListener(this);
         
         this.FrameAdmi.btnExportarExcel.addActionListener(this);//ExportarExcel;
     }
@@ -174,6 +179,16 @@ public class controlador implements ActionListener
             mod.setNombreArea(FrameAdmi.tablaAreas.getValueAt(FrameAdmi.tablaAreas.getSelectedRow(), 0).toString());
             mod2.modificar(mod, 2);
             FrameAdmi.cargarAreas();
+        }
+        else if(e.getSource()==FrameAdmi.btnFiltrarRegistros)
+        {
+            mod.setNombreArea(FrameAdmi.comboBoxArea.getSelectedItem().toString());
+            mod.setNombreTipo(FrameAdmi.comboBoxTipo.getSelectedItem().toString());
+            mod.setSemestre(FrameAdmi.txtSemestre.getText());
+            mod.setCarrera(FrameAdmi.comboBoxCarrera.getSelectedItem().toString());
+
+            FrameAdmi.cargarRegistros(mod);
+            
         }
         else if (e.getSource()==FrameAdmi.btnExportarExcel)//RESPUESTA AL BOTON EXPORTAR
         {
