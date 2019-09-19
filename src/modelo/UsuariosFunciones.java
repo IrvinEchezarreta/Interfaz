@@ -119,6 +119,8 @@ public class UsuariosFunciones extends conexion
         modelo3.addColumn("Apellido Paterno");
         modelo3.addColumn("Apellido Materno");
         modelo3.addColumn("Nombre de la carrera");
+        modelo3.addColumn("Tipo");
+        modelo3.addColumn("Areas Visitadas");
         modelo3.addColumn("Semestre");
         modelo3.addColumn("Fecha");
         modelo3.addColumn("Hora");
@@ -242,15 +244,23 @@ public class UsuariosFunciones extends conexion
         }
     }
     
-    public void modificar(Usuarios use)
+    public void modificar(Usuarios use, int num)
     {
         PreparedStatement ps = null;
         Connection con = getConexion();
-        String sql= "UPDATE usuarios SET nombre='";
+        String usuariosSQL= "UPDATE usuarios SET nombre='";
+        String areasSQL= "UPDATE areas SET Area='";
         try 
-        {
-            ps = con.prepareStatement(sql+use.getNombreUsuario()+"',apellidoPaterno='"+use.getApellidoPaternoU()+"',apellidoMaterno='"+use.getApellidoMaternoU()+"',contraseña='"+use.getContraseña()+"' WHERE usuario = '"+use.getUsuarioU()+"'");
-            ps.execute();
+        {   
+            if(num == 1)
+            {
+                ps = con.prepareStatement(usuariosSQL+use.getNombreUsuario()+"',apellidoPaterno='"+use.getApellidoPaternoU()+"',apellidoMaterno='"+use.getApellidoMaternoU()+"',contraseña='"+use.getContraseña()+"' WHERE usuario = '"+use.getUsuarioU()+"'");
+                ps.execute();
+            }
+            else if(num == 2)
+            {
+                
+            }
         } 
         catch (SQLException e) 
         {
@@ -265,15 +275,24 @@ public class UsuariosFunciones extends conexion
         
     }
     
-    public void eliminar(Usuarios use)
+    public void eliminar(Usuarios use, int num)
     {
         PreparedStatement ps = null;
         Connection con = getConexion();
-        String sql= "DELETE FROM usuarios WHERE usuario='";
+        String usuariosSQL= "DELETE FROM usuarios WHERE usuario='";
+        String areaSQL= "DELETE FROM areas WHERE Area='";
         try 
-        {  
-            ps = con.prepareStatement(sql+use.getUsuarioU()+"'");
-            ps.execute();
+        {   
+            if(num == 1)
+            {
+                ps = con.prepareStatement(usuariosSQL+use.getUsuarioU()+"'");
+                ps.execute();
+            }
+            else if(num == 2)
+            {
+                ps = con.prepareStatement(areaSQL+use.getNombreArea()+"'");
+                ps.execute();
+            }
         } 
         catch (SQLException e) 
         {

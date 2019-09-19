@@ -56,9 +56,12 @@ public class controlador implements ActionListener
         
         this.FrameAdmi.btnSalirAdmi.addActionListener(this);
         this.FrameAdmi.btnRegistrar.addActionListener(this);//opcion para registrar
-        this.FrameAdmi.btnRegistrarArea.addActionListener(this);
         this.FrameAdmi.item1.addActionListener(this);//opcion elminar datos de popMenu
         this.FrameAdmi.item2.addActionListener(this);//opcion modificar datos de popMenu 
+        
+        this.FrameAdmi.btnRegistrarArea.addActionListener(this);
+        this.FrameAdmi.item1A.addActionListener(this);
+        this.FrameAdmi.item2A.addActionListener(this);
         
         this.FrameAdmi.btnExportarExcel.addActionListener(this);//ExportarExcel;
     }
@@ -142,7 +145,7 @@ public class controlador implements ActionListener
         {
             //se toma de la tabla usuarios los valores en la fila leccionada de la columna 3
             mod.setUsuarioU(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 3).toString());
-            mod2.eliminar(mod);
+            mod2.eliminar(mod, 1);
             FrameAdmi.cargarUsuarios();
         }
         else if(e.getSource()==FrameAdmi.item2)//opcion para modificar
@@ -155,9 +158,22 @@ public class controlador implements ActionListener
             mod.setApellidoMaternoU(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 2).toString());
             mod.setUsuarioU(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 3).toString());
             mod.setContraseña(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 4).toString());
-            mod2.modificar(mod);
+            mod2.modificar(mod, 1);
             FrameAdmi.cargarUsuarios();
             
+        }
+        else if(e.getSource()==FrameAdmi.item1A)
+        {
+            System.out.println("controlador.controlador.actionPerformed()");
+            mod.setNombreArea(FrameAdmi.tablaAreas.getValueAt(FrameAdmi.tablaAreas.getSelectedRow(), 0).toString());
+            mod2.eliminar(mod, 2);
+            FrameAdmi.cargarAreas();
+        }
+        else if(e.getSource()==FrameAdmi.item2A)
+        {
+            mod.setNombreArea(FrameAdmi.tablaAreas.getValueAt(FrameAdmi.tablaAreas.getSelectedRow(), 0).toString());
+            mod2.modificar(mod, 2);
+            FrameAdmi.cargarAreas();
         }
         else if (e.getSource()==FrameAdmi.btnExportarExcel)//RESPUESTA AL BOTON EXPORTAR
         {
@@ -173,9 +189,5 @@ public class controlador implements ActionListener
                 }
             }
         }
-        
-        
     }
-    
-    
 }
