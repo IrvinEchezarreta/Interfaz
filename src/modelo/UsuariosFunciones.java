@@ -107,22 +107,34 @@ public class UsuariosFunciones extends conexion
         ResultSet rs = null;
         Connection con = getConexion();
         
-        String sql;
+        String sql = "";
         System.out.println(use.getNombreTipo());
         System.out.println(use.getSemestre());
         System.out.println(use.getSemestre());
         System.out.println(use.getNombreArea());
         
-        if(use.getNombreTipo()!= "" && use.getNombreTipo()!=null)
-        {
-            sql = "SELECT * FROM registros WHERE Tipo LIKE '"+use.getNombreTipo()+"'";
-        }
-        else
+        if(use.getNombreTipo()== null && use.getNombreArea()==null && use.getSemestre()==null && use.getCarrera()== null)
         {
             sql = "SELECT * FROM registros";
         }
+        else if( !use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals(""))
+        {
+            sql = "SELECT * FROM registros WHERE Tipo LIKE '"+use.getNombreTipo()+"'";
+        }
+        else if( use.getNombreTipo().equals("") && use.getNombreArea().equals("") && !use.getSemestre().equals("") && use.getCarrera().equals(""))
+        {
+            sql = "SELECT * FROM registros WHERE Semestre LIKE '"+use.getSemestre()+"'";
+        }
+        else if( use.getNombreTipo().equals("") && !use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals(""))
+        {
+            sql = "SELECT * FROM registros WHERE AreasVisitadas LIKE '"+use.getNombreArea()+"'";
+        }
+        else if( use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && !use.getCarrera().equals(""))
+        {
+            sql = "SELECT * FROM registros WHERE Nombre_Carrera LIKE '"+use.getCarrera()+"'";
+        }
         
-        System.out.println(sql);
+        System.out.println(sql+"<----------------------------------------------");
         ps = con.prepareStatement(sql);
         rs = ps.executeQuery();
         
