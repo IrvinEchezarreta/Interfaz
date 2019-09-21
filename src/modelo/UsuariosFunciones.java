@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -154,6 +155,11 @@ public class UsuariosFunciones extends conexion
         else if(use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && !use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE Nombre_Carrera LIKE '"+use.getCarrera()+"' AND Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null, "No existe esta combinacion de filtrado");
+            sql = "SELECT * FROM registros";
         }
         
         //System.out.println(sql+"<----------------------------------------------");
