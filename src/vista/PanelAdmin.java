@@ -446,11 +446,7 @@ public class PanelAdmin extends javax.swing.JFrame {
 
         jLabel13.setText("Carrera");
 
-        comboBoxCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel14.setText("Area");
-
-        comboBoxArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel15.setText("Semestre");
 

@@ -119,25 +119,41 @@ public class UsuariosFunciones extends conexion
         {
             sql = "SELECT * FROM registros";
         }
-        else if( !use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && use.getFechaInicio().equals("d/MM/yyyy") && use.getFechaFinal().equals("d/MM/yyyy"))
+        else if( !use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && use.getFechaInicio().equals("") && use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE Tipo LIKE '"+use.getNombreTipo()+"'";
         }
-        else if( use.getNombreTipo().equals("") && use.getNombreArea().equals("") && !use.getSemestre().equals("") && use.getCarrera().equals("") && use.getFechaInicio().equals("d/MM/yyyy") && use.getFechaFinal().equals("d/MM/yyyy"))
+        else if( use.getNombreTipo().equals("") && use.getNombreArea().equals("") && !use.getSemestre().equals("") && use.getCarrera().equals("") && use.getFechaInicio().equals("") && use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE Semestre LIKE '"+use.getSemestre()+"'";
         }
-        else if( use.getNombreTipo().equals("") && !use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && use.getFechaInicio().equals("d/MM/yyyy") && use.getFechaFinal().equals("d/MM/yyyy"))
+        else if( use.getNombreTipo().equals("") && !use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && use.getFechaInicio().equals("") && use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE AreasVisitadas LIKE '"+use.getNombreArea()+"'";
         }
-        else if( use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && !use.getCarrera().equals("") && use.getFechaInicio().equals("d/MM/yyyy") && use.getFechaFinal().equals("d/MM/yyyy"))
+        else if( use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && !use.getCarrera().equals("") && use.getFechaInicio().equals("") && use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE Nombre_Carrera LIKE '"+use.getCarrera()+"'";
         }
-        else if(use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && !use.getFechaInicio().equals("d/MM/yyyy") && !use.getFechaFinal().equals("d/MM/yyyy"))
+        else if(use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
+        }
+        else if(!use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
+        {
+            sql = "SELECT * FROM registros WHERE Tipo LIKE '"+use.getNombreTipo()+"' AND Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
+        }
+        else if(use.getNombreTipo().equals("") && !use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
+        {
+            sql = "SELECT * FROM registros WHERE AreasVisitadas LIKE '"+use.getNombreArea()+"' AND Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
+        }
+        else if(use.getNombreTipo().equals("") && use.getNombreArea().equals("") && !use.getSemestre().equals("") && use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
+        {
+            sql = "SELECT * FROM registros WHERE Semestre LIKE '"+use.getSemestre()+"' AND Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
+        }
+        else if(use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && !use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
+        {
+            sql = "SELECT * FROM registros WHERE Nombre_Carrera LIKE '"+use.getCarrera()+"' AND Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
         }
         
         //System.out.println(sql+"<----------------------------------------------");

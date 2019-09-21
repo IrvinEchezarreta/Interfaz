@@ -188,16 +188,27 @@ public class controlador implements ActionListener
             mod.setNombreTipo(FrameAdmi.comboBoxTipo.getSelectedItem().toString());
             mod.setSemestre(FrameAdmi.txtSemestre.getText());
             mod.setCarrera(FrameAdmi.comboBoxCarrera.getSelectedItem().toString());
-            
+            String fecha_inicio="";
+            String fecha_Final="";
+            try{
             String formato = FrameAdmi.dateChoserInicio.getDateFormatString();
             java.util.Date date = FrameAdmi.dateChoserInicio.getDate();
             SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            String fecha_inicio = String.valueOf(sdf.format(date));
-
+            fecha_inicio = String.valueOf(sdf.format(date));
+            }catch(Exception r)
+            {
+                System.out.println(fecha_inicio);
+            }
+            
+            try{
             String formato2 = FrameAdmi.dateChoserFinal.getDateFormatString();
             java.util.Date date2 = FrameAdmi.dateChoserFinal.getDate();
             SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-            String fecha_Final = String.valueOf(sdf.format(date2));
+            fecha_Final = String.valueOf(sdf2.format(date2));
+            }catch(Exception h)
+            {
+                System.out.println(fecha_Final);
+            }
             
             mod.setFechaInicio(fecha_inicio);
             mod.setFechaFinal(fecha_Final);
