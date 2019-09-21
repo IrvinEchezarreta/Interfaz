@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -16,6 +17,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Usuarios;//se importa del paquete modelo la clase usuarios
 import modelo.UsuariosFunciones;//se importa del paquete modelo la clase usuariosFunciones
 import modelo.ExcelFunciones;
+import sun.util.calendar.LocalGregorianCalendar.Date;
 import vista.PanelAdmin;//se importa del paquete vistas el Frame PanelAdmi
 import vista.PanelPrincipal;
 import vista.Login;
@@ -186,6 +188,19 @@ public class controlador implements ActionListener
             mod.setNombreTipo(FrameAdmi.comboBoxTipo.getSelectedItem().toString());
             mod.setSemestre(FrameAdmi.txtSemestre.getText());
             mod.setCarrera(FrameAdmi.comboBoxCarrera.getSelectedItem().toString());
+            
+            String formato = FrameAdmi.dateChoserInicio.getDateFormatString();
+            java.util.Date date = FrameAdmi.dateChoserInicio.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String fecha_inicio = String.valueOf(sdf.format(date));
+
+            String formato2 = FrameAdmi.dateChoserFinal.getDateFormatString();
+            java.util.Date date2 = FrameAdmi.dateChoserFinal.getDate();
+            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+            String fecha_Final = String.valueOf(sdf.format(date2));
+            
+            mod.setFechaInicio(fecha_inicio);
+            mod.setFechaFinal(fecha_Final);
 
             FrameAdmi.cargarRegistros(mod);
             

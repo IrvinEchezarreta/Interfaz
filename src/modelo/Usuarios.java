@@ -21,6 +21,24 @@ public class Usuarios
     private String nombreTipo;
     private String Semestre;
     private String Carrera;
+    private String FechaInicio;
+    private String FechaFinal;
+
+    public String getFechaInicio() {
+        return FechaInicio;
+    }
+
+    public void setFechaInicio(String FechaInicio) {
+        this.FechaInicio = FechaInicio;
+    }
+
+    public String getFechaFinal() {
+        return FechaFinal;
+    }
+
+    public void setFechaFinal(String FechaFinal) {
+        this.FechaFinal = FechaFinal;
+    }
 
     public String getNombreTipo() {
         return nombreTipo;
