@@ -10,7 +10,6 @@ import java.sql.SQLException;
  * @author HP
  */
 import controlador.controlador;
-import modelo.ExcelFunciones;
 import modelo.Usuarios;
 import modelo.UsuariosFunciones;
 import modelo.ExcelFunciones;

@@ -197,7 +197,7 @@ public class controlador implements ActionListener
             fecha_inicio = String.valueOf(sdf.format(date));
             }catch(Exception r)
             {
-                System.out.println(fecha_inicio);
+                System.out.println(fecha_inicio+"dato tomado bien");
             }
             
             try{
@@ -207,7 +207,7 @@ public class controlador implements ActionListener
             fecha_Final = String.valueOf(sdf2.format(date2));
             }catch(Exception h)
             {
-                System.out.println(fecha_Final);
+                System.out.println(fecha_Final+"dato tomado bien");
             }
             
             mod.setFechaInicio(fecha_inicio);

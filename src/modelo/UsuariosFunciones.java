@@ -140,7 +140,7 @@ public class UsuariosFunciones extends conexion
         {
             sql = "SELECT * FROM registros WHERE Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
         }
-        else if(!use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
+        /*else if(!use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE Tipo LIKE '"+use.getNombreTipo()+"' AND Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
         }
@@ -155,14 +155,14 @@ public class UsuariosFunciones extends conexion
         else if(use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && !use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE Nombre_Carrera LIKE '"+use.getCarrera()+"' AND Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
-        }
+        }*/
         else 
         {
             JOptionPane.showMessageDialog(null, "No existe esta combinacion de filtrado");
             sql = "SELECT * FROM registros";
         }
         
-        //System.out.println(sql+"<----------------------------------------------");
+        System.out.println(sql+"<----------------------------------------------");
         ps = con.prepareStatement(sql);
         rs = ps.executeQuery();
         
@@ -175,9 +175,9 @@ public class UsuariosFunciones extends conexion
         modelo3.addColumn("Apellido Paterno");
         modelo3.addColumn("Apellido Materno");
         modelo3.addColumn("Nombre de la carrera");
-        modelo3.addColumn("Tipo");
-        modelo3.addColumn("Areas Visitadas");
         modelo3.addColumn("Semestre");
+        modelo3.addColumn("Tipo");
+        modelo3.addColumn("Area visitada");
         modelo3.addColumn("Fecha");
         modelo3.addColumn("Hora");
         
@@ -333,13 +333,6 @@ public class UsuariosFunciones extends conexion
         {
             e.printStackTrace();
         }
-    }
-    
-    public void buscar(Usuarios use)
-    {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-        
     }
     
     public void eliminar(Usuarios use, int num)
