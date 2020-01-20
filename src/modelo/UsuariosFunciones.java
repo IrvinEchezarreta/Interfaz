@@ -25,6 +25,15 @@ public class UsuariosFunciones extends conexion
 {
     //esta clase herada la clase conexion para poder hacer las consultas sql
     //aqui va en su mayoria consultas mas sin embargo se puede poner otras cosas dependiendo de la situacion
+    
+    /*
+    AQUI SE GENERAN RESULTADOS QUE SE PUDEN MOSTRAR EN LA INTERFACES
+    SE OBTIENEN LOS DATOS DE LA BASE DE DATOS Y SE MUESTRAN EN TABLAS DE LA INTERFAZ
+    
+    NOTA:
+        "use" esta haciendo com referancia para obtener los datos almacenados en los setter de la
+        clase usuarios del paquete modelo
+    */
     public DefaultTableModel TablaUsuarios() throws SQLException
     {
         System.out.println("modelo.UsuariosFunciones.TablaUsuarios()");
@@ -60,7 +69,7 @@ public class UsuariosFunciones extends conexion
             modelo.addRow(filas);
         }
         //System.out.println(modelo);
-        return modelo;
+        return modelo;//SE REGRESAN LOS DATO OBTENIDOS EN LA CONDULTA PARA MOSTRAR EN LA INTERFAZ
     }
     
     public DefaultTableModel TablaAreas() throws SQLException
@@ -94,7 +103,7 @@ public class UsuariosFunciones extends conexion
             modelo2.addRow(filas);
         }
         //System.out.println(modelo);
-        return modelo2;
+        return modelo2;//SE REGRESAN LOS DATO OBTENIDOS EN LA CONDULTA PARA MOSTRAR EN LA INTERFAZ
         
     }
     
@@ -140,7 +149,7 @@ public class UsuariosFunciones extends conexion
         {
             sql = "SELECT * FROM registros WHERE Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
         }
-        /*else if(!use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
+        else if(!use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE Tipo LIKE '"+use.getNombreTipo()+"' AND Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
         }
@@ -155,7 +164,7 @@ public class UsuariosFunciones extends conexion
         else if(use.getNombreTipo().equals("") && use.getNombreArea().equals("") && use.getSemestre().equals("") && !use.getCarrera().equals("") && !use.getFechaInicio().equals("") && !use.getFechaFinal().equals(""))
         {
             sql = "SELECT * FROM registros WHERE Nombre_Carrera LIKE '"+use.getCarrera()+"' AND Fecha BETWEEN '"+use.getFechaInicio()+"' AND '"+use.getFechaFinal()+"'";
-        }*/
+        }
         else 
         {
             JOptionPane.showMessageDialog(null, "No existe esta combinacion de filtrado");
@@ -193,11 +202,12 @@ public class UsuariosFunciones extends conexion
             modelo3.addRow(filas);
         }
         
-        return modelo3;
+        return modelo3;//SE REGRESAN LOS DATO OBTENIDOS EN LA CONDULTA PARA MOSTRAR EN LA INTERFAZ
         
     }
-    public DefaultComboBoxModel getModeloBoxArea() 
+    public DefaultComboBoxModel getModeloBoxArea() //se crea un comboBox
     {
+        //OBTENER DATOS Y MOSTARLOS EN UN COMBOBOX
         DefaultComboBoxModel listModelArea = new DefaultComboBoxModel();
         listModelArea.addElement("");
         try 
@@ -217,11 +227,11 @@ public class UsuariosFunciones extends conexion
             
         } catch (Exception e) {
         }
-        return listModelArea;
+        return listModelArea;//SE REGRESAN LOS DATO OBTENIDOS EN LA CONDULTA PARA MOSTRAR EN LA INTERFAZ
       
     }
     
-     public DefaultComboBoxModel getModeloBoxCarrera() 
+     public DefaultComboBoxModel getModeloBoxCarrera() //se crea un combobox
     {
         DefaultComboBoxModel listModelCarrera = new DefaultComboBoxModel();
         listModelCarrera.addElement("");
@@ -238,7 +248,7 @@ public class UsuariosFunciones extends conexion
         listModelCarrera.addElement("INGENIERÍA INDUSTRIAL");
         listModelCarrera.addElement("INGENIERÍA QUÍMICA");
            
-        return listModelCarrera; 
+        return listModelCarrera; //SE REGRESAN LOS DATO OBTENIDOS EN LA CONDULTA PARA MOSTRAR EN LA INTERFAZ
     }
     public DefaultComboBoxModel getModeloBoxTipos() 
     {
@@ -249,9 +259,9 @@ public class UsuariosFunciones extends conexion
         listModelTipo.addElement("Docentes");
         listModelTipo.addElement("Administrativos");
            
-        return listModelTipo;  
+        return listModelTipo;  //SE REGRESAN LOS DATO OBTENIDOS EN LA CONDULTA PARA MOSTRAR EN LA INTERFAZ
     }
-    public boolean consultar(Usuarios use, boolean fv)
+    public boolean consultar(Usuarios use, boolean fv)//metodo para validar los datos del login
     {
         try {
             PreparedStatement ps = null;

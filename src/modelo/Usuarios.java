@@ -62,9 +62,7 @@ public class Usuarios
 
     public void setCarrera(String Carrera) {
         this.Carrera = Carrera;
-    }
-    
-           
+    }         
 
     public String getNombreArea() {
         return nombreArea;
@@ -113,7 +111,5 @@ public class Usuarios
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-    
-    
-    
+       
 }
