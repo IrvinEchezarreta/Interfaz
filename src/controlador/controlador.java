@@ -114,6 +114,7 @@ public class controlador implements ActionListener
         this.FrameAdmi.btnSalirAdmi.addActionListener(this);
         this.FrameAdmi.btnRegistrar.addActionListener(this);//opcion para registrar
         this.FrameAdmi.item1.addActionListener(this);//opcion elminar datos de popMenu
+        this.FrameAdmi.btnBuscar.addActionListener(this);
         this.FrameAdmi.item2.addActionListener(this);//opcion modificar datos de popMenu 
         
         this.FrameAdmi.btnRegistrarArea.addActionListener(this);
@@ -511,8 +512,17 @@ public class controlador implements ActionListener
             mod.setUsuarioU(FrameAdmi.txtUsuarioU.getText());
             mod.setContraseña(FrameAdmi.txtContraseñaU.getText());
             mod2.registrar(mod, 1);//se llama al metodo registrar de la clase UsuarioFunciones con el contenido en mod
-            FrameAdmi.cargarUsuarios();//se actualiza la tabla llamando al metodo cargar usuarios 
+            FrameAdmi.cargarUsuarios(mod);//se actualiza la tabla llamando al metodo cargar usuarios 
             
+        }
+        else if(e.getSource()==FrameAdmi.btnBuscar)
+        {
+            mod.setNombreUsuario(FrameAdmi.txtNombresU.getText());
+            mod.setApellidoPaternoU(FrameAdmi.txtApellidoPaternoU.getText());
+            mod.setApellidoMaternoU(FrameAdmi.txtApellidoMaternoU.getText());
+            mod.setUsuarioU(FrameAdmi.txtUsuarioU.getText());
+            mod.setContraseña(FrameAdmi.txtContraseñaU.getText());
+            FrameAdmi.cargarUsuarios(mod);
         }
         else if(e.getSource()== FrameAdmi.btnRegistrarArea)
         {
@@ -525,7 +535,7 @@ public class controlador implements ActionListener
             //se toma de la tabla usuarios los valores en la fila leccionada de la columna 3
             mod.setUsuarioU(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 3).toString());
             mod2.eliminar(mod, 1);
-            FrameAdmi.cargarUsuarios();
+            FrameAdmi.cargarUsuarios(mod);
         }
         else if(e.getSource()==FrameAdmi.item2)//opcion para modificar
         {
@@ -538,7 +548,7 @@ public class controlador implements ActionListener
             mod.setUsuarioU(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 3).toString());
             mod.setContraseña(FrameAdmi.tablaUsuarios.getValueAt(FrameAdmi.tablaUsuarios.getSelectedRow(), 4).toString());
             mod2.modificar(mod, 1);
-            FrameAdmi.cargarUsuarios();
+            FrameAdmi.cargarUsuarios(mod);
             
         }
         else if(e.getSource()==FrameAdmi.item1A)
@@ -598,6 +608,9 @@ public class controlador implements ActionListener
                 //ALT + 124 ||
                 if(archivo.getName().endsWith("xls")||archivo.getName().endsWith("xlsx")){
                     JOptionPane.showMessageDialog(null, modExcel.Exportar(archivo,FrameAdmi.tablaRegistros));
+                   // SelectArchivo.getName
+                     archivo.setReadOnly();
+                    
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccionar formato Valido");
                 }

@@ -34,7 +34,7 @@ public class PanelAdmin extends javax.swing.JFrame {
     public PanelAdmin() 
     {
         initComponents();
-        cargarUsuarios();
+        cargarUsuarios(use);
         popMU.add(item1);
         popMU.add(item2);
         tablaUsuarios.setComponentPopupMenu(popMU);
@@ -75,11 +75,11 @@ public class PanelAdmin extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    public void cargarUsuarios()
+    public void cargarUsuarios(Usuarios use)
     {
         UsuariosFunciones tb = new UsuariosFunciones();
         try {            
-            tablaUsuarios.setModel(tb.TablaUsuarios());
+            tablaUsuarios.setModel(tb.TablaUsuarios(use));
         } 
         catch (Exception e) 
         {

@@ -34,7 +34,7 @@ public class UsuariosFunciones extends conexion
         "use" esta haciendo com referancia para obtener los datos almacenados en los setter de la
         clase usuarios del paquete modelo
     */
-    public DefaultTableModel TablaUsuarios() throws SQLException
+    public DefaultTableModel TablaUsuarios(Usuarios use) throws SQLException
     {
         System.out.println("modelo.UsuariosFunciones.TablaUsuarios()");
         DefaultTableModel modelo = new DefaultTableModel();
@@ -45,6 +45,18 @@ public class UsuariosFunciones extends conexion
         Connection con = getConexion();
         
         String sql = "SELECT * FROM usuarios";
+        if(use.getNombreUsuario()== null && use.getApellidoPaternoU()==null && use.getApellidoMaternoU()== null && use.getContraseña()==null && use.getUsuarioU()==null)
+        {
+            sql = "SELECT * FROM usuarios";
+        }
+        else if(use.getNombreUsuario().equals("") && use.getApellidoPaternoU().equals("") && use.getApellidoMaternoU().equals("") && use.getContraseña().equals("") && !use.getUsuarioU().equals(""))
+        {
+            sql = "SELECT * FROM usuarios WHERE usuario LIKE '"+use.getUsuarioU()+"'";
+        }
+        else
+        {
+            sql = "SELECT * FROM usuarios";
+        }
         ps = con.prepareStatement(sql);
         rs = ps.executeQuery();
         
